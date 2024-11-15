@@ -1,0 +1,22 @@
+{% extends 'navbar/ProjectNavbar.html' %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Contacts</title>
+   </head>
+<body>
+{% block body %}
+<h1>Add Contact</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <label for="email_address">Send email to:</label>
+    <input type="email" name="email_address" required>
+    <button type="submit">Add Contact</button>
+</form>
+
+{% endblock %}
+</body>
+</html>

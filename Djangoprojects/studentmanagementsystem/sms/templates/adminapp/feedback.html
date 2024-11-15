@@ -1,0 +1,115 @@
+{% extends 'navbar/ProjectNavbar.html' %}
+
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #f4f7f9; /* Soft gray background */
+            padding: 40px;
+            margin: 0;
+            color: #333;
+        }
+
+        h2 {
+            color: #2c3e50; /* Deep gray-blue */
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        form {
+            max-width: 600px; /* Adjusted for a more balanced form size */
+            margin: 0 auto;
+            padding: 30px 40px;
+            background-color: #ffffff; /* Clean white background */
+            border-radius: 16px; /* Smoother border radius */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: 600;
+            color: #34495e; /* Deep gray */
+            margin-bottom: 12px;
+            display: block;
+            font-size: 16px;
+        }
+
+        input[type="text"], input[type="email"], input[type="tel"], textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 2px solid #dcdde1; /* Light gray border */
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+            background-color: #f7f9fc;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, textarea:focus {
+            border-color: #3498db; /* Light blue focus border */
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db; /* Blue button */
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            width: 100%;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9; /* Darker blue on hover */
+        }
+
+        textarea {
+            resize: vertical;
+            height: 150px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+{% block body %}
+    <h2>Feedback Form</h2>
+    <form method="post" action="{% url 'submit_feedback' %}">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" maxlength="150" required></textarea>
+
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
+</body>
+</html>

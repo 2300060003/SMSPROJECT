@@ -1,0 +1,42 @@
+{% extends 'navbar/ProjectNavbar.html' %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact List</title>
+<link rel="stylesheet" href="{% static 'css/adminapp/contact_list.css' %}">
+</head>
+<body>
+{% block body %}
+<div class="contact-container">
+    <h1>Contact List</h1>
+
+    <!-- Search Bar -->
+    <form method="GET" class="search-bar">
+        <input type="text" name="q" placeholder="Search by name or email">
+        <button type="submit">Search</button>
+    </form>
+     <!-- Add New Contact Button -->
+    <a href="{% url 'contact_add' %}" class="add-contact-btn">Add New Contact</a>
+
+    <!-- Contact Cards -->
+    {% for contact in contacts %}
+    <div class="contact-card">
+        <h3>{{ contact.name }}</h3>
+        <p><strong>Email:</strong> {{ contact.email }}</p>
+        <p><strong>Phone:</strong> {{ contact.phone_number }}</p>
+        <p><strong>Address:</strong> {{ contact.address }}</p>
+
+        <div class="contact-buttons">
+            <a href="{% url 'contact_delete' contact.pk %}" class="btn-delete">Delete</a>
+            <a href="mailto:{{ contact.email }}" class="btn-email">Email</a>
+        </div>
+    </div>
+    {% endfor %}
+
+
+</div>
+{% endblock %}
+</body>
+</html>

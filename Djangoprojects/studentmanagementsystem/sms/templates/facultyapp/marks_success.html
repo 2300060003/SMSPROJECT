@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            color: #ff2c2c;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #008000;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            text-decoration: none;
+            border-radius: 5px;
+            width: 150px; /* Reduced button width */
+            text-align: center;
+        }
+
+        .button:hover {
+            background-color: #005f33;
+        }
+    </style>
+</head>
+<body>
+    <h2>Marks have been successfully posted!</h2>
+    <a href="{% url 'facultyapp:post_marks' %}" class="button">Post more marks</a>
+
+    {% block content %}
+
+    {% endblock content %}
+</body>
+</html>
